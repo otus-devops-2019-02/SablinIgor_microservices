@@ -1,0 +1,11 @@
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+sablinigor/ubuntu-tmp-file   latest              42944b77c2f3        59 seconds ago      119MB
+ubuntu                       16.04               a3551444fc85        41 hours ago        119MB
+centos7-box_slack-export     latest              ddda55f67118        6 weeks ago         929MB
+node                         latest              9ff38e3a6d9d        7 weeks ago         904MB
+nginx                        latest              8c9ca4d17702        8 weeks ago         109MB
+ubuntu                       latest              47b19964fb50        2 months ago        88.1MB
+hello-world                  latest              fce289e99eb9        3 months ago        1.84kB
+
+Задание со * - основное отличие контейнера от образа состоит в том, что контейнер имеет дополнительный верхний слой, доступный для записи. 
+Данный слой, при необходимости, будет использован при создании нового образа, на основе запущенного контейрена (docker commit).
