@@ -1,0 +1,13 @@
+plugin: gcp_compute
+zones: # populate inventory with instances in these regions
+  - europe-west1-b
+projects:
+  - docker-239119
+keyed_groups:
+  - key: tags['items']
+    separator: ''
+filters: null
+scopes:
+  - https://www.googleapis.com/auth/compute
+service_account_file: ../../../docker-239119-0f46381a8e8f.json
+auth_kind: serviceaccount

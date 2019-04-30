@@ -1,0 +1,11 @@
+- hosts: reddit_app
+  become: true
+
+  tasks:
+    - name: Running the container
+      docker_container:
+        name: reddit_app 
+        image: soaron/otus-reddit:1.0
+        ports:
+        - "9292:9292"
+        state: started
