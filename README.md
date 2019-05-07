@@ -18,7 +18,7 @@ SablinIgor microservices repository
 
  ## В процессе сделано:
  - Новый проект в GCP (docker)
- - Docer machine использует проект docker для создания вируталки docker-host для работы с образами докера
+ - Docker machine использует проект docker для создания вируталки docker-host для работы с образами докера
  - Докер образ с установленными mongodb, ruby и тестовым приложением (reddit-app): docker-monolith/Dockerfile
  - Образ выложен на докер хаб: https://cloud.docker.com/u/soaron/repository/docker/soaron/otus-reddit
 
@@ -33,3 +33,13 @@ SablinIgor microservices repository
 
 ## Использованные источники 
  - http://matthieure.me/2018/12/31/ansible_inventory_plugin.html
+
+# Выполнено ДЗ №14
+
+ - [x] Основное ДЗ
+ - [x] Задание со *
+
+ ## В процессе сделано:
+
+## Использованные источники 
+ Ошибка с "OSError: [Errno 8] Exec format error": https://github.com/pallets/werkzeug/issues/1482
