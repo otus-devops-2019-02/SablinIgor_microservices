@@ -41,5 +41,33 @@ SablinIgor microservices repository
 
  ## В процессе сделано:
 
+ export GOOGLE_PROJECT=docker-239119
+ docker-machine create --driver google \
+                --google-machine-image https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts \
+                --google-machine-type n1-standard-1 \
+                --google-zone europe-west1-b \
+                docker-host 
+eval $(docker-machine env docker-host)
+
+
+docker build -t <your-dockerhub-login>/ui:1.0 ./ui
+
+RUN apt-get update \
+    && apt-get install -y ruby-full ruby-dev build-essential \
+    && gem install bundler --no-ri --no-rdoc
+
 ## Использованные источники 
  Ошибка с "OSError: [Errno 8] Exec format error": https://github.com/pallets/werkzeug/issues/1482
+
+
+docker run -d --network=reddit \
+--network-alias=post_db --network-alias=comment_db mongo:latest
+
+docker run -d --network=reddit \
+--network-alias=post soaron/post:1.1
+
+docker run -d --network=reddit \
+--network-alias=comment soaron/comment:1.1
+
+docker run -d --network=reddit \
+-p 9292:9292 soaron/ui:1.9
