@@ -28,3 +28,5 @@ venv/
 
 docker-239119-0f46381a8e8f.json
 .DS_Store
+
+.env

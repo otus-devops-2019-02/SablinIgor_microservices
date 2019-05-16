@@ -93,3 +93,37 @@ docker volume create reddit_db
 ## Использованные источники 
  Ошибка с "OSError: [Errno 8] Exec format error": https://github.com/pallets/werkzeug/issues/1482
 
+# Выполнено ДЗ №15
+
+ - [x] Основное ДЗ
+ - [x] Задание со *
+
+~~~~
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+49ca11dba3fb        nginx               "nginx -g 'daemon of…"   17 seconds ago      Up 13 seconds                           laughing_beaver
+~~~~
+
+~~~~
+ 2019/05/15 16:58:02 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+~~~~
+
+~~~~
+docker-user@docker-host:~$ ps ax | grep docker-proxy
+29042 ?        Sl     0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 9292 -container-ip 10.0.1.2 -container-port 9292
+~~~~
+
+
+
+Default naming rule
+
+The default naming scheme for containers created by Compose in this version has changed from <project>_<service>_<index> to <project>_<service>_<index>_<slug>, where <slug> is a randomly-generated hexadecimal string.
+
+~~~~
+  ui:
+    build: ./ui
+    container_name: my-ui-container
+~~~~
+
+
+https://docs.docker.com/compose/extends/
