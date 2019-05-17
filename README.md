@@ -93,3 +93,39 @@ docker volume create reddit_db
 ## Использованные источники 
  Ошибка с "OSError: [Errno 8] Exec format error": https://github.com/pallets/werkzeug/issues/1482
 
+# Выполнено ДЗ №15
+
+ - [x] Основное ДЗ
+ - [] Задание со *
+
+ ## В процессе сделано:
+
+- Исследован запуск контейнеров в различных типах сетей
+
+- При запуске одного контейнера несколько раз в режиме хост, в работоспособном состоянии остается только первый запущенный контейнер
+~~~~
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+49ca11dba3fb        nginx               "nginx -g 'daemon of…"   17 seconds ago      Up 13 seconds                           laughing_beaver
+~~~~
+
+- Остальные контейнеры завершаются с ошибкой, так как необходимый адрес/порт уже занят
+~~~~
+ 2019/05/15 16:58:02 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+~~~~
+
+- Default naming rule
+~~~~
+The default naming scheme for containers created by Compose in this version has changed from <project>_<service>_<index> to <project>_<service>_<index>_<slug>, where <slug> is a randomly-generated hexadecimal string.
+~~~~
+
+- При необходимости можно самостоятельно определить имя для контейнера
+~~~~
+  ui:
+    build: ./ui
+    container_name: my-ui-container
+~~~~
+
+## Использованные источники 
+
+https://docs.docker.com/compose/extends/
