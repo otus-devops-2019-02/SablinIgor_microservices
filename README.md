@@ -129,3 +129,7 @@ The default naming scheme for containers created by Compose in this version has 
 ## Использованные источники 
 
 https://docs.docker.com/compose/extends/
+
+# Выполнено ДЗ №16
+
+ - [x] Основное ДЗ
