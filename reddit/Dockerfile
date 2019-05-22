@@ -1,5 +1,4 @@
-FROM alpine:3.9.4
-RUN apk --no-cache add ruby ruby-dev ruby-bundler build-base
+FROM ruby:2.2.10
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME
