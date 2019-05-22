@@ -1,0 +1,9 @@
+aws_access_key="xxxxxx"
+aws_secret_key="xxxxxx"
+key_pair        = "my-key-pair"
+
+// runner
+instance_type = "t2.micro"
+cnt = 2
+gitlab_host = "http://xx.xx.xx.xx/"
+gitlab_token = "xxxxxx"

@@ -1,49 +1,28 @@
 version: '3.3'
 services:
   post_db:
-    container_name: my-mongodb-container
     image: mongo:3.2
     volumes:
       - post_db:/data/db
     networks:
-      - back_net
-
+      - reddit
   ui:
-    build: ./ui
-    container_name: my-ui-container
-    image: ${USERNAME}/ui:${UI_SERVICE_VERSION}
+    image: sigorilla/ui:3.0
     ports:
-      - ${UI}:9292/tcp
+      - 9292:9292/tcp
     networks:
-      - front_net
-
+      - reddit
   post:
-    build: ./post-py
-    container_name: my-post-container
-    image: ${USERNAME}/post:${POST_SERVICE_VERSION}
+    image: sigorilla/post:2.0
     networks:
-      - back_net
-      - front_net
-
+      - reddit
   comment:
-    build: ./comment
-    container_name: my-comment-container
-    image: ${USERNAME}/comment:${COMMENT_SERVICE_VERSION}
+    image: sigorilla/comment:2.0
     networks:
-      - back_net
-      - front_net
+      - reddit
 
 volumes:
   post_db:
 
 networks:
-  back_net:
-    ipam:
-      driver: default
-      config:
-      - subnet: 10.0.2.0/24
-  front_net:
-    ipam:
-      driver: default
-      config:
-      - subnet: 10.0.1.0/24
+  reddit:
