@@ -19,12 +19,9 @@ build_job:
   stage: build
   services:
     - docker:dind
-  before_script: []
+  before_script: [cd reddit]
   script:
-    - docker info
     - docker build -t myimage .
-  tags:
-    - docker
 
 test_unit_job:
   stage: test

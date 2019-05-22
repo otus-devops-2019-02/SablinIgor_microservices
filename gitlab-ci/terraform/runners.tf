@@ -22,9 +22,12 @@ resource "aws_instance" "runners" {
             "sudo yum update -y",
             "sudo amazon-linux-extras install docker -y",
             "sudo service docker start",
-            "sudo mkdir -p /srv/gitlab-runner/config",
-            "sudo docker run -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest",
-            "sudo docker exec -it gitlab-runner gitlab-runner register --non-interactive --url \"${var.gitlab_host}\" --registration-token \"${var.gitlab_token}\" --executor \"docker\" --docker-image docker:stable --description \"gitlab-runner\" --tag-list \"linux,dind\" --run-untagged --locked=\"false\""
+            "sudo wget -O /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64",
+            "sudo chmod +x /usr/local/bin/gitlab-runner",
+            "sudo useradd --comment \"GitLab Runner\" --create-home gitlab-runner --shell /bin/bash",
+            "gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner",
+            "gitlab-runner start",
+            "gitlab-runner register --non-interactive --url \"${var.gitlab_host}\" --registration-token \"${var.gitlab_token}\" --executor \"docker\" --docker-image alpine:latest --description \"docker-runner\" --tag-list \"dind\" --run-untagged=\"true\" --locked=\"false\""
         ]
     }
 
