@@ -8,6 +8,7 @@ gem 'puma'
 gem 'mongo'
 gem 'rack-test'
 gem 'json'
+gem 'bigdecimal'
 
 group :development do
     gem 'capistrano',         require: false
