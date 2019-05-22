@@ -19,6 +19,8 @@ build_job:
   script:
     - docker info
     - docker build -t myimage .
+  tags:
+    - docker
 
 test_unit_job:
   stage: test

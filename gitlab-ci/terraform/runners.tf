@@ -24,7 +24,7 @@ resource "aws_instance" "runners" {
             "sudo service docker start",
             "sudo mkdir -p /srv/gitlab-runner/config",
             "sudo docker run -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest",
-            "sudo docker exec -it gitlab-runner gitlab-runner register --non-interactive --url \"${var.gitlab_host}\" --registration-token \"${var.gitlab_token}\" --executor \"docker\" --docker-image alpine:latest --description \"gitlab-runner\" --tag-list \"linux,xenial,ubuntu,docker\" --run-untagged --locked=\"false\""
+            "sudo docker exec -it gitlab-runner gitlab-runner register --non-interactive --url \"${var.gitlab_host}\" --registration-token \"${var.gitlab_token}\" --executor \"docker\" --docker-image docker:stable --description \"gitlab-runner\" --tag-list \"linux,dind\" --run-untagged --locked=\"false\""
         ]
     }
 
