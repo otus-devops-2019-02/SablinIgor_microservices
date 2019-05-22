@@ -17,6 +17,7 @@ before_script:
 build_job:
   image: docker:stable
   stage: build
+  before_script: []
   script:
     - docker info
     - docker build -t myimage .
