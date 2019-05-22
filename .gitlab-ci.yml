@@ -17,7 +17,8 @@ before_script:
 build_job:
   stage: build
   script:
-    - echo 'Building'
+    - docker info
+    - docker build -t myimage .
 
 test_unit_job:
   stage: test
