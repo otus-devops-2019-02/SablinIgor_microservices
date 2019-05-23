@@ -36,7 +36,7 @@ test_integration_job:
     - echo 'Testing 2'
 
 branch review:
-  image: mesosphere/aws-cli:1.14.15
+  image: mesosphere/aws-cli:1.14.5
   stage: review
   script: echo "Deploy to $CI_ENVIRONMENT_SLUG"
   environment:
