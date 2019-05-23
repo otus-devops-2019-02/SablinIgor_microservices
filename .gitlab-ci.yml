@@ -38,6 +38,7 @@ test_integration_job:
 branch review:
   image: python:latest
   stage: review
+  before_script: []
   script:
     - pip3 install awscli 
     - aws info
