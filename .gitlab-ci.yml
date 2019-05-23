@@ -36,9 +36,12 @@ test_integration_job:
     - echo 'Testing 2'
 
 branch review:
-  image: mesosphere/aws-cli:1.14.5
+  image: python:latest
   stage: review
-  script: echo "Deploy to $CI_ENVIRONMENT_SLUG"
+  script:
+    - pip3 install awscli 
+    - aws info
+    - echo "Deploy to $CI_ENVIRONMENT_SLUG"
   environment:
     name: branch/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.example.com
