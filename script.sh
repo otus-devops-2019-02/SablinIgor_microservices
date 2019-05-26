@@ -10,7 +10,7 @@ eval TARGET_GROUP_ARN=$(aws elbv2 create-target-group --name Test-tg-$CI_COMMIT_
 read LOAD_BALANCER_ARN DNS_NAME <<< $(aws elbv2 create-load-balancer --name App-LB-$CI_COMMIT_SHORT_SHA --type application --subnets subnet-05349e5e055408210 subnet-06357c0e76a089427 | jq -r '.LoadBalancers[0] | "\(.LoadBalancerArn) \(.DNSName)"')
 
 # create task definition
-sed -i 's/<IMAGE_TAG>/'"$CI_COMMIT_SHORT_SHA.sablin.de"'/g' task-def.json
+sed -i 's/<IMAGE_TAG>/'"$CI_COMMIT_SHORT_SHA"'/g' task-def.json
 aws ecs register-task-definition --cli-input-json file://task-def.json
 
 # add listener to lb: needs lb arn and target goup arn
