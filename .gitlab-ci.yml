@@ -38,7 +38,7 @@ test_integration_job:
 branch review:
   image: python:latest
   stage: review
-  before_script: []
+  before_script: [cd reddit]
   script:
     - pip3 install awscli 
     - aws s3 ls
