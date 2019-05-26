@@ -1,0 +1,14 @@
+{
+    "Comment": "Creating Alias resource record sets in Route 53",
+    "Changes": [{
+               "Action": "CREATE",
+               "ResourceRecordSet": {
+                           "Name": "commit2.sablin.de",
+                           "Type": "A",
+                           "AliasTarget":{
+                                   "HostedZoneId": "Z3Q77PNBQS71R4",
+                                   "DNSName": "App-LB-Balancer-commit2-1364748944.eu-west-3.elb.amazonaws.com",
+                                   "EvaluateTargetHealth": false
+                             }}
+                         }]
+}
