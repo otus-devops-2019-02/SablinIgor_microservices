@@ -22,8 +22,8 @@ aws ecs create-service \
     --load-balancers targetGroupArn=$TARGET_GROUP_ARN,containerName=reddit,containerPort=9292
 
 # create record set for Route53
-sed -i 's/<URL>/'"$DNS_NAME"'/g' templ-r53.json
-sed -i 's/<LOAD_BALANCER_NAME>/'"App-LB-$CI_COMMIT_SHORT_SHA"'/g' templ-r53.json
+sed -i 's/<URL>/'"$CI_ENVIRONMENT_URL"'/g' templ-r53.json
+sed -i 's/<LOAD_BALANCER_NAME>/'"$DNS_NAME"'/g' templ-r53.json
 cat templ-r53.json
 #aws route53 change-resource-record-sets --hosted-zone-id Z1ER99FRFTTS38 --change-batch file://sample-r53.json
 
