@@ -21,7 +21,9 @@ build_job:
     - docker:dind
   before_script: [cd reddit]
   script:
-    - docker build -t myimage .
+    - docker build -t soaron/reddit:$CI_COMMIT_SHORT_SHA .
+    - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+    - docker push soaron/reddit:$CI_COMMIT_SHORT_SHA
 
 test_unit_job:
   stage: test
