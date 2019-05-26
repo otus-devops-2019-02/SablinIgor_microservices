@@ -24,6 +24,6 @@ aws ecs create-service \
 # create record set for Route53
 sed -i 's/<URL>/'"http:\/\/$CI_COMMIT_SHORT_SHA.sablin.de"'/g' templ-r53.json
 sed -i 's/<LOAD_BALANCER_NAME>/'"$DNS_NAME"'/g' templ-r53.json
-cat templ-r53.json
-#aws route53 change-resource-record-sets --hosted-zone-id Z1ER99FRFTTS38 --change-batch file://sample-r53.json
+
+aws route53 change-resource-record-sets --hosted-zone-id Z1ER99FRFTTS38 --change-batch file://sample-r53.json
 
