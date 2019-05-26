@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+aws configure set region eu-west-3
+
+apt-get install jq
+
 #eval TARGET_GROUP_ARN=$(aws elbv2 create-target-group --name Test-tg-commit3 --protocol HTTP --port 80 --vpc-id vpc-060e5cc464cd74d72 | jq -c '.TargetGroups[0].TargetGroupArn')
 
 # create load balancer: get LOAD_BALANCER_ARN and DNS_NAME
