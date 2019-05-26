@@ -2,7 +2,7 @@
 
 aws configure set region eu-west-3
 
-apt-get install jq
+apt-get install jq -y
 
 #eval TARGET_GROUP_ARN=$(aws elbv2 create-target-group --name Test-tg-commit3 --protocol HTTP --port 80 --vpc-id vpc-060e5cc464cd74d72 | jq -c '.TargetGroups[0].TargetGroupArn')
 
