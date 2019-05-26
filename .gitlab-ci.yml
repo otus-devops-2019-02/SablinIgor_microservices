@@ -42,12 +42,12 @@ branch review:
   script:
     - pip3 install awscli 
     - aws s3 ls
-    - echo "Deploy to $CI_ENVIRONMENT_SLUG"
+    - echo "Deploy to http://$CI_COMMIT_SHORT_SHA.sablin.de"
     - apt-get update
     - ./script.sh
   environment:
     name: branch/$CI_COMMIT_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG.sablin.de
+    url: http://$CI_COMMIT_SHORT_SHA.sablin.de
   only:
     - branches
   except:

@@ -13,13 +13,13 @@ read LOAD_BALANCER_ARN DNS_NAME <<< $(aws elbv2 create-load-balancer --name App-
 aws elbv2 create-listener --load-balancer-arn $LOAD_BALANCER_ARN --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=$TARGET_GROUP_ARN
 
 # create-service
-#aws ecs create-service \
-#    --cluster cluster-reddit \
-#    --service-name service-app-commit3 \
-#    --task-definition reddit_app:5 \
-#    --desired-count 1 \
-#    --role ecsServiceRole \
-#    --load-balancers targetGroupArn=$TARGET_GROUP_ARN,containerName=reddit,containerPort=9292
+aws ecs create-service \
+    --cluster cluster-reddit \
+    --service-name service-app-commit3 \
+    --task-definition reddit_app:5 \
+    --desired-count 1 \
+    --role ecsServiceRole \
+    --load-balancers targetGroupArn=$TARGET_GROUP_ARN,containerName=reddit,containerPort=9292
 
 # create record set for Route53
 #aws route53 change-resource-record-sets --hosted-zone-id Z1ER99FRFTTS38 --change-batch file://sample-r53.json
