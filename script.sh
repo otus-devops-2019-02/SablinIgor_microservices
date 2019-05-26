@@ -15,7 +15,7 @@ aws elbv2 create-listener --load-balancer-arn $LOAD_BALANCER_ARN --protocol HTTP
 # create-service
 aws ecs create-service \
     --cluster cluster-reddit \
-    --service-name service-app-commit3 \
+    --service-name service-app-$CI_COMMIT_SHORT_SHA \
     --task-definition reddit_app:5 \
     --desired-count 1 \
     --role ecsServiceRole \
