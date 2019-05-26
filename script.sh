@@ -11,7 +11,9 @@ read LOAD_BALANCER_ARN DNS_NAME <<< $(aws elbv2 create-load-balancer --name App-
 
 # create task definition
 sed -i 's/<IMAGE_TAG>/'"$CI_COMMIT_SHORT_SHA"'/g' task-def.json
-aws ecs register-task-definition --cli-input-json file://task-def.json
+eval TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://task-def.json | jq -c '.taskDefinition.revision')
+echo $TD_REVISION
+
 
 # add listener to lb: needs lb arn and target goup arn
 aws elbv2 create-listener --load-balancer-arn $LOAD_BALANCER_ARN --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=$TARGET_GROUP_ARN
