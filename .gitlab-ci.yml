@@ -47,7 +47,7 @@ branch review:
     - ./script.sh
   environment:
     name: branch/$CI_COMMIT_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG.example.com
+    url: http://$CI_ENVIRONMENT_SLUG.sablin.de
   only:
     - branches
   except:
