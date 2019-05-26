@@ -43,6 +43,7 @@ branch review:
     - pip3 install awscli 
     - aws s3 ls
     - echo "Deploy to $CI_ENVIRONMENT_SLUG"
+    - sudo apt-get update
     - ./script.sh
   environment:
     name: branch/$CI_COMMIT_REF_NAME
