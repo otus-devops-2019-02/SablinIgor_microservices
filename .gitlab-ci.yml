@@ -43,7 +43,7 @@ branch review:
     - pip3 install awscli 
     - aws s3 ls
     - echo "Deploy to $CI_ENVIRONMENT_SLUG"
-    - script.sh
+    - ./script.sh
   environment:
     name: branch/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.example.com
