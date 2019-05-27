@@ -40,7 +40,9 @@ eval LB_ARN=$(aws elbv2 describe-load-balancers --names "App-LB-$CI_COMMIT_SHORT
 aws elbv2 delete-load-balancer --load-balancer-arn $LB_ARN
 
 # delete target group
-
+echo "delete target group..."
+eval TG_ARN=$(aws elbv2 describe-target-groups --names Test-tg-acfb14f7 | jq -c '.TargetGroups[0].TargetGroupArn')
+aws elbv2 delete-target-group --target-group-arn $TG_ARN
 
 #eval TARGET_GROUP_ARN=$(aws elbv2 create-target-group --name Test-tg-$CI_COMMIT_SHORT_SHA --protocol HTTP --port 80 --vpc-id vpc-060e5cc464cd74d72 | jq -c '.TargetGroups[0].TargetGroupArn')
 
