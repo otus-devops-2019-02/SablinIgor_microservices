@@ -36,7 +36,8 @@ aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --cha
 
 # delete load balancer
 echo "delete load balancer..."
-aws elbv2 delete-load-balancer --load-balancer-arn arn:aws:elasticloadbalancing:eu-west-3:420202121842:loadbalancer/app/App-LB-d939bab1/3d140107be4430a1
+eval LB_ARN=$(aws elbv2 describe-load-balancers --names "App-LB-$CI_COMMIT_SHORT_SHA" | jq -c '.LoadBalancers[0].LoadBalancerArn')
+aws elbv2 delete-load-balancer --load-balancer-arn $LB_ARN
 
 # delete target group
 
