@@ -43,7 +43,6 @@ branch review:
   before_script: []
   script:
     - pip3 install awscli 
-    - aws s3 ls
     - echo "Deploy to http://$CI_COMMIT_SHORT_SHA.sablin.de"
     - apt-get update
     - ./script.sh
@@ -54,6 +53,14 @@ branch review:
     - branches
   except:
     - master
+
+stop_review:
+  stage: review
+  variables:
+    GIT_STRATEGY: none
+  before_script: []
+  script:
+    - echo "Stop http://$CI_COMMIT_SHORT_SHA.sablin.de"
 
 staging:
   stage: stage
