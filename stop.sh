@@ -35,6 +35,7 @@ EOF
 aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --change-batch file://$JSON_FILE
 
 # delete load balancer
+echo "aws elb delete-load-balancer --load-balancer-name App-LB-$CI_COMMIT_SHORT_SHA"
 aws elb delete-load-balancer --load-balancer-name App-LB-$CI_COMMIT_SHORT_SHA
 
 # delete target group
