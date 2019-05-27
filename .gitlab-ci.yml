@@ -58,8 +58,6 @@ branch review:
 stop_review:
   image: python:latest
   stage: review
-  variables:
-    GIT_STRATEGY: none
   before_script: []
   script:
     - echo "Stop http://$CI_COMMIT_SHORT_SHA.sablin.de"
