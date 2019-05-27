@@ -56,6 +56,7 @@ branch review:
     - master
 
 stop_review:
+  image: python:latest
   stage: review
   variables:
     GIT_STRATEGY: none
