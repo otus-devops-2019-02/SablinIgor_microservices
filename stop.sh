@@ -39,14 +39,15 @@ echo "delete load balancer App-LB-$CI_COMMIT_SHORT_SHA..."
 eval LB_ARN=$(aws elbv2 describe-load-balancers --names "App-LB-$CI_COMMIT_SHORT_SHA" | jq -c '.LoadBalancers[0].LoadBalancerArn')
 aws elbv2 delete-load-balancer --load-balancer-arn $LB_ARN
 
+# delete services
+echo "delete service service-app-$CI_COMMIT_SHORT_SHA ..."
+aws ecs delete-service --service service-app-$CI_COMMIT_SHORT_SHA --cluster cluster-reddit --force
+
 # delete target group
 echo "delete target group Test-tg-$CI_COMMIT_SHORT_SHA ..."
 eval TG_ARN=$(aws elbv2 describe-target-groups --names Test-tg-$CI_COMMIT_SHORT_SHA | jq -c '.TargetGroups[0].TargetGroupArn')
 echo "TB_ARN: $TG_ARN"
 aws elbv2 delete-target-group --target-group-arn $TG_ARN
 
-# delete services
-echo "delete service service-app-$CI_COMMIT_SHORT_SHA ..."
-aws ecs delete-service --service service-app-$CI_COMMIT_SHORT_SHA --force
 
 
