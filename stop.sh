@@ -42,7 +42,12 @@ aws elbv2 delete-load-balancer --load-balancer-arn $LB_ARN
 # delete target group
 echo "delete target group..."
 eval TG_ARN=$(aws elbv2 describe-target-groups --names Test-tg-acfb14f7 | jq -c '.TargetGroups[0].TargetGroupArn')
+echo "TB_ARN: $TG_ARN"
 aws elbv2 delete-target-group --target-group-arn $TG_ARN
+
+# delete services
+echo "delete service..."
+aws ecs delete-service --service service-app-$CI_COMMIT_SHORT_SHA --force
 
 #eval TARGET_GROUP_ARN=$(aws elbv2 create-target-group --name Test-tg-$CI_COMMIT_SHORT_SHA --protocol HTTP --port 80 --vpc-id vpc-060e5cc464cd74d72 | jq -c '.TargetGroups[0].TargetGroupArn')
 
