@@ -9,6 +9,7 @@ HOSTED_ZONE_ID=Z1ER99FRFTTS38
 URL=$CI_COMMIT_SHORT_SHA.sablin.de
 
 # get DNSName
+eval DNS_NAME=$(aws route53 list-resource-record-sets --hosted-zone-id Z1ER99FRFTTS38 --query "ResourceRecordSets[?Name == '$URL.']" | jq -c '.[0].AliasTarget.DNSName')
 
 JSON_FILE=`mktemp`
 
@@ -19,11 +20,11 @@ cat <<EOF
     "Changes": [{
                "Action": "DELETE",
                "ResourceRecordSet": {
-                           "Name": "12bfa8eb.sablin.de",
+                           "Name": "$URL",
                            "Type": "A",
                            "AliasTarget":{
                                    "HostedZoneId": "Z3Q77PNBQS71R4",
-                                   "DNSName": "app-lb-12bfa8eb-63427165.eu-west-3.elb.amazonaws.com.",
+                                   "DNSName": "$DNS_NAME",
                                    "EvaluateTargetHealth": false
                              }}
                          }]
