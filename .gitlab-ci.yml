@@ -62,6 +62,9 @@ stop_review:
   before_script: []
   script:
     - echo "Stop http://$CI_COMMIT_SHORT_SHA.sablin.de"
+    - pip3 install awscli 
+    - apt-get update
+    - ./stop.sh
   when: manual
   environment:
     name: branch/$CI_COMMIT_REF_NAME
