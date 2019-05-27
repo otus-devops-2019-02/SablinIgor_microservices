@@ -48,6 +48,10 @@ echo "delete target group Test-tg-$CI_COMMIT_SHORT_SHA ..."
 eval TG_ARN=$(aws elbv2 describe-target-groups --names Test-tg-$CI_COMMIT_SHORT_SHA | jq -c '.TargetGroups[0].TargetGroupArn')
 echo "TB_ARN: $TG_ARN"
 aws elbv2 delete-target-group --target-group-arn $TG_ARN
+if [ $? -ne 0 ]
+then
+echo -e "date : Error occurs while deleting target group... "
+fi
 
 
 
