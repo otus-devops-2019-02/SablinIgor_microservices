@@ -8,17 +8,24 @@ apt-get install jq -y
 HOSTED_ZONE_ID=Z1ER99FRFTTS38
 URL=$CI_COMMIT_SHORT_SHA.sablin.de
 
+# get DNSName
+
 JSON_FILE=`mktemp`
 
 (
 cat <<EOF
 {
-    "Comment": "Delete Alias resource record sets in Route 53",
+    "Comment": "Deleting Alias resource record sets in Route 53",
     "Changes": [{
                "Action": "DELETE",
                "ResourceRecordSet": {
-                           "Name": "$URL",
+                           "Name": "12bfa8eb.sablin.de",
                            "Type": "A",
+                           "AliasTarget":{
+                                   "HostedZoneId": "Z3Q77PNBQS71R4",
+                                   "DNSName": "app-lb-12bfa8eb-63427165.eu-west-3.elb.amazonaws.com.",
+                                   "EvaluateTargetHealth": false
+                             }}
                          }]
 }
 EOF
