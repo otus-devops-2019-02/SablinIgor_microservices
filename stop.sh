@@ -17,7 +17,7 @@ cat <<EOF
     "Changes": [{
                "Action": "DELETE",
                "ResourceRecordSet": {
-                           "Name": "<URL>",
+                           "Name": "$URL",
                            "Type": "A",
                          }]
 }
