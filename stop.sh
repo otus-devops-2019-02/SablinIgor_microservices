@@ -37,6 +37,9 @@ aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --cha
 # delete load balancer
 aws elb delete-load-balancer --load-balancer-name App-LB-$CI_COMMIT_SHORT_SHA
 
+# delete target group
+
+
 #eval TARGET_GROUP_ARN=$(aws elbv2 create-target-group --name Test-tg-$CI_COMMIT_SHORT_SHA --protocol HTTP --port 80 --vpc-id vpc-060e5cc464cd74d72 | jq -c '.TargetGroups[0].TargetGroupArn')
 
 # create load balancer: get LOAD_BALANCER_ARN and DNS_NAME
