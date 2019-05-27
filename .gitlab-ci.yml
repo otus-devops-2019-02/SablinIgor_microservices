@@ -49,6 +49,7 @@ branch review:
   environment:
     name: branch/$CI_COMMIT_REF_NAME
     url: http://$CI_COMMIT_SHORT_SHA.sablin.de
+    on_stop: stop_review
   only:
     - branches
   except:
@@ -61,6 +62,10 @@ stop_review:
   before_script: []
   script:
     - echo "Stop http://$CI_COMMIT_SHORT_SHA.sablin.de"
+  when: manual
+  environment:
+    name: branch/$CI_COMMIT_REF_NAME
+    action: stop
 
 staging:
   stage: stage
