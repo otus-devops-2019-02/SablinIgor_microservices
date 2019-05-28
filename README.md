@@ -174,3 +174,48 @@ https://docs.docker.com/compose/extends/
      - Удаляется Service
 
    - Создание необходимого числа Gitlab runners реализовано при помощи терраформа: /gitlab-ci/terraform/
+
+# Выполнено ДЗ №17
+
+ - [x] Основное ДЗ
+ - [] Задание со *
+ 
+ ## В процессе сделано:
+
+ - Рефактор каталого проекта - сборка образов отделена от docker-compose
+ - Дополнительно к контейнерам приложения запускается контейнер с Прометеусом для отслеживания метрик приложения
+   ~~~~
+    prometheus:
+      image: ${USERNAME}/prometheus
+      ports:
+        - '9090:9090'
+      volumes:
+        - prometheus_data:/prometheus
+      command:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.path=/prometheus'
+        - '--storage.tsdb.retention=1d'
+      volumes:
+        prometheus_data: 
+   ~~~~
+ - Добавлен node-exporter для отслеживания метрик самого хоста
+    ~~~~
+     node-exporter:
+       image: prom/node-exporter:v0.15.2
+       user: root
+       volumes:
+         - /proc:/host/proc:ro
+         - /sys:/host/sys:ro
+         - /:/rootfs:ro
+       command:
+         - '--path.procfs=/host/proc'
+         - '--path.sysfs=/host/sys'
+         - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"' 
+    ~~~~ 
+  - Созданные образы выгружены на DockerHub
+    - https://cloud.docker.com/u/soaron/repository/docker/soaron/prometheus
+    - https://cloud.docker.com/u/soaron/repository/docker/soaron/post
+    - https://cloud.docker.com/u/soaron/repository/docker/soaron/comment
+    - https://cloud.docker.com/u/soaron/repository/docker/soaron/ui
+    
+  - Это все
