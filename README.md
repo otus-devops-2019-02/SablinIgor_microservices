@@ -133,5 +133,44 @@ https://docs.docker.com/compose/extends/
 # Выполнено ДЗ №16
 
  - [x] Основное ДЗ
+ - [x] Задание со *
+ 
+ ## В процессе сделано:
 
- test
+ - Установлен Gitlab CE из докер-образа
+ - Установлен gitlab-runner из докер-образа
+ - Настроена интеграция Gitlab и Slack (https://devops-team-otus.slack.com/messages/CH08W3XRT)
+ - Проект тестового приложения залит на Gitlab
+ ~~~~
+ > git checkout -b gitlab-ci-1
+ > git remote add gitlab http://<your-vm-ip>/homework/example.git
+ > git push gitlab gitlab-ci-1
+ ~~~~
+ - Настроен пайплан в файле .gitlab-ci.yml 
+ - Для запуска шагов Stage и Production указано требование к наличию тэга:
+     ~~~~
+     only:
+       - /^\d+\.\d+\.\d+/
+     ~~~~
+ - Настроено поднятие динамического окружения для шага review
+   - При сборке образ приложения помечается тэгом равным коммиту
+   - Образ заливается на DockerHub
+   - Для окружения формируется доменное имя вида: 
+     ~~~~
+     url: http://$CI_COMMIT_SHORT_SHA.sablin.de
+     ~~~~
+   - Дальшейнее создания окружения происходит на сервисах AWS (script.sh)
+     - Создается target group
+     - Поднимается Load balancer
+     - Для Load balancer добавляется listener для обращения по порту 80
+     - В Task definition указывается тэг образа тестового приложения
+     - В Cluster создается Service для запуска приложения из образа
+     - В Route53 (DNS records) создается Record set для связи доменного имени окружения с Load Balanсer DNS name
+
+   - При остановке окружения происходит обратный процесс (stop.sh)
+     - Удаляется запись Resord set в Route53
+     - Удаляется Load balancer
+     - Удаляется Target group
+     - Удаляется Service
+
+   - Создание необходимого числа Gitlab runners реализовано при помощи терраформа: /gitlab-ci/terraform/
