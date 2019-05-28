@@ -30,3 +30,15 @@ docker-239119-0f46381a8e8f.json
 .DS_Store
 
 .env
+
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+.DS_Store

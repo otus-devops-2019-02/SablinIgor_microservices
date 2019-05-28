@@ -1,0 +1,92 @@
+image: ruby:2.4.2
+
+stages:
+  - build
+  - test
+  - review
+  - stage
+  - production
+
+variables:
+  DATABASE_URL: 'mongodb://mongo/user_posts'
+
+before_script:
+  - cd reddit
+  - bundle install 
+
+build_job:
+  image: docker:stable
+  stage: build
+  services:
+    - docker:dind
+  before_script: [cd reddit]
+  script:
+    - docker build -t soaron/reddit:$CI_COMMIT_SHORT_SHA .
+    - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+    - docker push soaron/reddit:$CI_COMMIT_SHORT_SHA
+
+test_unit_job:
+  stage: test
+  services:
+    - mongo:latest
+  script:
+    - ruby simpletest.rb 
+
+test_integration_job:
+  stage: test
+  script:
+    - echo 'Testing 2'
+
+branch review:
+  image: python:latest
+  stage: review
+  before_script: []
+  script:
+    - pip3 install awscli 
+    - echo "Deploy to http://$CI_COMMIT_SHORT_SHA.sablin.de"
+    - apt-get update
+    - ./script.sh
+  environment:
+    name: branch/$CI_COMMIT_REF_NAME
+    url: http://$CI_COMMIT_SHORT_SHA.sablin.de
+    on_stop: stop_review
+  only:
+    - branches
+  except:
+    - master
+
+stop_review:
+  image: python:latest
+  stage: review
+  before_script: []
+  script:
+    - echo "Stop http://$CI_COMMIT_SHORT_SHA.sablin.de"
+    - pip3 install awscli 
+    - apt-get update
+    - ./stop.sh
+  when: manual
+  environment:
+    name: branch/$CI_COMMIT_REF_NAME
+    action: stop
+
+staging:
+  stage: stage
+  when: manual
+  only:
+    - /^\d+\.\d+\.\d+/ 
+  script:
+    - echo 'Deploy'
+  environment:
+    name: stage
+    url: https://beta.example.com
+
+production:
+  stage: production
+  when: manual
+  only:
+    - /^\d+\.\d+\.\d+/ 
+  script:
+    - echo 'Deploy'
+  environment:
+    name: production
+    url: https://example.com

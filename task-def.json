@@ -1,0 +1,35 @@
+{
+    "containerDefinitions": [
+      {
+        "portMappings": [
+          {
+            "hostPort": 0,
+            "protocol": "tcp",
+            "containerPort": 9292
+          }
+        ],
+        "cpu": 10,
+        "environment": [
+          {
+            "name": "DATABASE_URL",
+            "value": "mongo"
+          }
+        ],
+        "memory": 500,
+        "image": "soaron/reddit:<IMAGE_TAG>",
+        "essential": true,
+        "links": [
+          "mongo"
+        ],
+        "name": "reddit"
+      },
+      {
+        "cpu": 10,
+        "memory": 500,
+        "image": "mongo:3.4.20",
+        "essential": true,
+        "name": "mongo"
+      }
+    ],
+    "family": "reddit_app"
+  }
