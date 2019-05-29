@@ -1,0 +1,10 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: 'slack-notifications'
+
+receivers:
+  - name: 'slack-notifications'
+    slack_configs:
+    - channel: '#igor_sablin' #Заменяем на свои значения
