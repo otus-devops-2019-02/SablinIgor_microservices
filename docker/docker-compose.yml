@@ -19,6 +19,11 @@ services:
   post:
     container_name: my-post-container
     image: ${USER_NAME}/post:${POST_SERVICE_VERSION}
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.post
     networks:
       - back_net
       - front_net
