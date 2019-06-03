@@ -218,4 +218,23 @@ https://docs.docker.com/compose/extends/
     - https://cloud.docker.com/u/soaron/repository/docker/soaron/comment
     - https://cloud.docker.com/u/soaron/repository/docker/soaron/ui
     
-  - Это все
+# Выполнено ДЗ №18
+
+ - [x] Основное ДЗ
+ - [] Задание со *
+ 
+ ## В процессе сделано:
+
+ - Настроены dashboards для Grafana
+   - Бизнес-метрики: monitoring/grafana/dashboards/Business_Logic_Monitoring.json
+   - Мониторинг докера: monitoring/grafana/dashboards/DockerMonitoring.json
+   - Мониторинг микросервисов: monitoring/grafana/dashboards/UI_Service_Monitoring.json  
+
+ - Настроен алертинг-сервис - уведомления уходят в канал Slack
+
+ - Список образов на DockerHub
+   - soaron/alertmanager:latest
+   - soaron/prometheus:latest
+   - soaron/comment:logging
+   - soaron/post:logging
+   - soaron/ui:logging
