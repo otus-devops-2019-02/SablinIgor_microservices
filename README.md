@@ -238,3 +238,7 @@ https://docs.docker.com/compose/extends/
    - soaron/comment:logging
    - soaron/post:logging
    - soaron/ui:logging
+
+# Выполнено ДЗ №19
+
+ - [x] Основное ДЗ
