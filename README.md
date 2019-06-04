@@ -242,13 +242,19 @@ https://docs.docker.com/compose/extends/
 # Выполнено ДЗ №19
 
  - [x] Основное ДЗ
+ - [] Задание со *
 
-- Сборка образов
-~~~~
-for i in ui post-py comment; do cd src/$i; bash docker_build.sh; cd -; done
+ ## В процессе сделано:
 
-docker build -t $USER_NAME/fluentd .
-~~~~
+- Сборка образов приложения
+  ~~~~
+  for i in ui post-py comment; do cd src/$i; bash docker_build.sh; cd -; done
+  ~~~~
 
-docker-compose up -d
-docker-compose -f docker-compose-logging.yml up -d
+- Поднят elasticsearch
+- Поднята kibana
+- Преобразование неструктурированных логов осуществляется при помощи Fluentd
+- Для распределенного трейсинга используется Zipkin
+
+
+
