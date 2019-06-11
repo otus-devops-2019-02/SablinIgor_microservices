@@ -8,6 +8,8 @@ variables.json
 
 env/
 
+cert/
+
 *.retry
 
 infra*.json
