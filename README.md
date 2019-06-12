@@ -263,6 +263,23 @@ https://docs.docker.com/compose/extends/
 
 ## В процессе сделано:
 
+- Подготовлены манифест-файлы для запуска тестового приложения: /Users/admin/SablinIgor_microservices/kubernetes/reddit
+  
+  Деплой в миникуб показал работоспособность приложения (посты создаются, комменты тоже)
+
+  ~~~~
+  minikube start
+  kubectl apply -f mongo-deployment.yml
+  kubectl apply -f mongo-service.yaml
+  kubectl apply -f post-deployment.yml
+  kubectl apply -f post-service.yaml
+  kubectl apply -f comment-deployment.yml
+  kubectl apply -f comment-service.yaml
+  kubectl apply -f ui-deployment.yml
+  kubectl apply -f ui-service.yaml
+  minikube service ui --url
+  ~~~~
+
 - Настройка кубернетес по мануалу https://github.com/kelseyhightower/kubernetes-the-hard-way (OSX)
 - Prerequisites
   - gcloud config set compute/region europe-west1
