@@ -1,8 +1,8 @@
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: post-deployment
+  name: post
 spec:
   replicas: 1
   selector:
@@ -15,5 +15,10 @@ spec:
         app: post
     spec:
       containers:
-      - image: chromko/post
+      - image: soaron/post:logging
         name: post
+        env:
+        - name: POST_DATABASE_HOST
+          value: mongo.default.svc.cluster.local
+        ports:
+        - containerPort: 5000

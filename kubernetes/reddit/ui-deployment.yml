@@ -1,8 +1,8 @@
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ui-deployment
+  name: ui
 spec:
   replicas: 1
   selector:
@@ -15,5 +15,7 @@ spec:
         app: ui
     spec:
       containers:
-      - image: soaron/ui
+      - image: soaron/ui:logging
         name: ui
+        ports:
+        - containerPort: 9292
