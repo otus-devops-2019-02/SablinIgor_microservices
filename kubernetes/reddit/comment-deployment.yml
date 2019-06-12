@@ -10,7 +10,7 @@ spec:
       app: comment
   template:
     metadata:
-      name: comment
+      name: comment-deployment
       labels:
         app: comment
     spec:
