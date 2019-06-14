@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: ui
   labels:
-    app: ui
+    app: reddit
+    component: ui 
 spec:
   type: NodePort 
   ports:
   - port: 9292
   selector:
-    app: ui
+    app: reddit
+    component: ui 

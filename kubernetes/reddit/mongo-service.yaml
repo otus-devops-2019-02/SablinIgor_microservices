@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: mongo
   labels:
-    app: mongo
+    app: reddit
+    component: mongo 
 spec:
   ports:
   - port: 27017
     targetPort: 27017
   selector:
-    app: mongo
+    app: reddit
+    component: mongo 
