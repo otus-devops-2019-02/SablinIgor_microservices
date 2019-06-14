@@ -9,6 +9,7 @@ spec:
   type: NodePort 
   ports:
   - port: 9292
+    protocol: TCP
   selector:
     app: reddit
     component: ui 

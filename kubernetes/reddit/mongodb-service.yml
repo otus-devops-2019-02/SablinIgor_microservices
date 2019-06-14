@@ -8,6 +8,7 @@ metadata:
 spec:
   ports:
   - port: 27017
+    protocol: TCP
     targetPort: 27017
   selector:
     app: reddit
