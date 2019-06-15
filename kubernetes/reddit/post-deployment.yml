@@ -7,12 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: post
+      app: reddit
+      component: post
   template:
     metadata:
       name: post
       labels:
-        app: post
+        app: reddit
+        component: post
     spec:
       containers:
       - image: soaron/post:logging

@@ -7,12 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ui
+      app: reddit
+      component: ui 
   template:
     metadata:
       name: ui
       labels:
-        app: ui
+        app: reddit
+        component: ui 
     spec:
       containers:
       - image: soaron/ui:logging

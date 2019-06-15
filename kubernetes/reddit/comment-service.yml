@@ -3,10 +3,13 @@ kind: Service
 metadata:
   name: comment
   labels:
-    app: comment
+    app: reddit
+    component: comment 
 spec:
   ports:
   - port: 9292
+    protocol: TCP
     targetPort: 9292
   selector:
-    app: comment
+    app: reddit
+    component: comment
