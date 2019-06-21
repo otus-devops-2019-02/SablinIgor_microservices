@@ -1014,7 +1014,7 @@ EOF
    ~~~~
  - трафик перенаправляется на https
  - для проверки ssl используется сертификат в хранилище ACM
- - так как использовалось хранилище сертификатов (честно подписанным), то секрет в кластер не передавался, но если бы было нужно, то можно поступить так (перекодировать тело и ключ сертификата в base26):
+ - (*) так как использовалось хранилище сертификатов (честно подписанным), то секрет в кластер не передавался, но если бы было нужно, то можно поступить так (перекодировать тело и ключ сертификата в base26):
   ~~~~
   apiVersion: v1
   data:
@@ -1026,6 +1026,15 @@ EOF
     namespace: default
   type: kubernetes.io/tls
   ~~~~
+- для разграничения сетевых потоков применен Calico policy engine
+  ~~~~
+  kubectl apply -f https://raw.githubusercontent.com/aws/amazon-vpc-cni-k8s/master/config/v1.4/calico.yaml
+  ~~~~
+- для хранения данных использованы технологии
+  - emptyDir
+  - gcePersistentDisk
+  - PersistentVolume
+  - StorageClass Fast 
 
 ## Использованные источники 
   - https://aws.amazon.com/ru/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
