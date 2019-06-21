@@ -5,7 +5,6 @@ metadata:
   labels:
     app: reddit
     component: mongo
-    comment-db: "true"
 spec:
   selector:
     matchLabels:
@@ -17,7 +16,6 @@ spec:
       labels:
         app: reddit
         component: mongo
-        comment-db: "true"
     spec:
       containers:
       - name: mongo
