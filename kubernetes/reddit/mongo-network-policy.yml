@@ -14,3 +14,6 @@ spec:
     - podSelector:
         matchLabels:
           component: comment
+    - podSelector:
+        matchLabels:
+          component: post
