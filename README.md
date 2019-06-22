@@ -1039,3 +1039,23 @@ EOF
 ## Использованные источники 
   - https://aws.amazon.com/ru/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
   - https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/tasks/ssl_redirect/
+
+# Выполнено ДЗ №23
+
+ - [x] Основное ДЗ
+ - [] Задание со *
+
+ ## В процессе сделано:
+  - установлен helm
+  - созданы charts для сервисов приложения
+  - для mongodb используется chart из центрального репозитория
+  - в chatrs используются шаблоны (templates)
+  - в шаблонах используются функции helpers
+  - подготовлен единый chart приложения с зависимостями на charts сервисов и базы
+  - рассмотрен пайплайн установки приложения через hellm на gitlab-е
+
+ ## Использованные источники 
+  - https://www.bible.com/ru/bible/400/GEN.1.SYNO
+  - https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/
+  - https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/#known-issues
+  - https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/#getting-a-shell-to-a-container
