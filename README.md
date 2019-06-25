@@ -1059,3 +1059,27 @@ EOF
   - https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/
   - https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/#known-issues
   - https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/#getting-a-shell-to-a-container
+
+# Выполнено ДЗ №24
+
+ - [x] Основное ДЗ
+ - [] Задание со *
+
+ ## В процессе сделано:
+  - снова поднят кластер
+  - установлен тиллер 
+    - kubectl apply -f tiller.yml
+    - helm init --service-account tiller
+  - установлен ингресс
+    - helm install stable/nginx-ingress --name nginx
+  - установка прометеуса
+    - helm fetch --untar stable/prometheus
+    - helm upgrade prom . -f custom_values.yml --install
+  - устоновка приложения
+    - helm install reddit --name reddit-test
+    - helm install reddit --name production  --namespace production
+    - helm install reddit --name staging  --namespace staging
+  - блоки endpoint-ов разделены на три части: test, staging и production
+  - установка grafana
+  
+  35.205.141.242 reddit reddit-prometheus reddit-grafana reddit-non-prod production reddit-kibana staging prod
